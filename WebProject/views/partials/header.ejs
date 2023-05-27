@@ -1,0 +1,35 @@
+
+<nav class="navbar navbar-expand-lg " style=" background-color: #e4be9e;  border-bottom: solid 1px #b87333; height: 70px; position: fixed; top: 0; width: 100%; z-index: 100000; ">
+  <div class="container-fluid ">
+    <a href="/">    <img src="/img/logon.jpg" alt="logo"  style="width: 50px; margin-right: 19px; border-radius: 10px; " >
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="/cart">cart</a>
+        </li>
+        <li class="nav-item hover_Link">
+          <a class=" nav-link" style="color: black;" aria-current="page" href="/history">History</a>
+        </li>
+        <%if(role == 'admin' || role == 'super admin'){%>
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin">dashboard</a>
+        </li>
+        <%}%>
+      </ul>
+      <%if(role == 'guest'){%>
+       <a href="/login"> <button class="btn btn-success" type="button">log in</button></a> 
+       <a href="/register"><button class="btn btn-primary m-1" type="button">register</button></a>
+       <%}else{%>
+        <h3 class="me-2" style="font-family: Century Gothic; ">welcome <span class="text-success"><%= user.name %></span> </h3>
+        <a href="/logout"><button class="btn btn-danger m-1" type="button">log out</button></a>
+       <%}%>
+    
+    </div>
+  </div>
+</nav>
+
+

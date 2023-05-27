@@ -1,0 +1,22 @@
+<%- include('./partials/adminHeader.ejs') %> 
+
+<form action="/addProducts" method="POST" enctype="multipart/form-data" >
+    <div class="form-floating mb-3 ">
+        <input type="text" name="productName" class="form-control w-50 mt-3" id="floatingInput" placeholder="pizza">
+        <label for="floatingInput">product name</label>
+      </div>
+      <div class="mb-3">
+        <input class="form-control w-50" type="file"name="productImage">
+      </div>
+      <div class="form-floating mt-4">
+        <textarea class="form-control w-50" name="productDescription" placeholder="productDescription" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Description</label>
+      </div>
+      <div class="form-floating mt-4">
+        <input type="number" name="productPrice" class="form-control w-50" id="floatingInput"  placeholder="price">
+        <label for="floatingInput">Price</label>
+      </div>
+    
+    <button type="submit" class="btn btn-success mt-3 mb-3">add Product</button>
+</form>
+<%- include('./partials/adminFooter.ejs') %> 

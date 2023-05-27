@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title><%- title %></title>
+</head>
+<body style="background-color: #f5f0f6; background-size: cover;">
+
+
+
+<main>
+
+  <% let totalPrice = 0 %>
+  <%- include('./partials/header.ejs') %>
+
+  
+    <div class="container py-5 h-100" style="margin-top: 40px; ">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card">
+            <div class="card-body p-4">
+  
+              <div class="row">
+  
+                <div class="col-lg-7">
+                  <h5 class="mb-3"><a href="/" class="text-body"><i
+                        class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                  <hr>
+  
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <p class="mb-1">Shopping cart</p>
+                    </div>
+                  </div>
+
+                  <% items.forEach(item => { %>
+                    <% let price = item.productPrice %>
+                    <% parseInt(price) %>
+                  
+                   <% if(item.userId == user._id){ %>  
+
+                    <form action="/buy/<%=item.userId%>" method="post">
+
+                      <% totalPrice += price %>
+  
+                  <div class="card mb-3">
+
+                    <div class="card-body">
+
+                      <div class="d-flex justify-content-between">
+
+                        <div class="d-flex flex-row align-items-center">
+
+                          <div>
+
+                            <img
+                              src="<%= item.productImage %>"
+                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+
+                          </div>
+
+                          <div class="ms-3">
+
+                            <h5><%= item.productName %></h5>
+
+                          </div>
+
+                        </div>
+
+                        <div class="d-flex flex-row align-items-center">
+
+                          <div style="width: 50px;">
+
+                            <h5 class="fw-normal mb-0"><%= item.quantity %></h5>
+
+                          </div>
+
+                          <div style="width: 80px;">
+
+                            <h5 class="mb-0"><%= item.productPrice %> SAR</h5>
+
+                          </div>
+
+                          <a href="deletItem/<%= item._id%>" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <% } %>
+                  <% }) %>
+  
+                </div>
+                <div class="col-lg-5">
+  
+
+
+                  <div class="card text-white rounded-3" style="background-color: #e4be9e;">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">Checkout details</h5>
+                      </div>
+                    
+                        <div class="form-outline form-white mb-4">
+                          <input   class="form-control form-control-lg" siez="17" placeholder="05X XXXX XXX" type="number" name="phone"  id="floatingInput" />
+                          <label class="form-label" for="typeName">Phone Number</label>
+                        </div>
+                        
+                        <div class="form-outline form-white mb-4">
+                        <input type="text" name="location" class="form-control form-control-lg" id="floatingInput"  placeholder="e.g. Riyadh" >
+                          <label class="form-label" for="typeText">Location</label>
+                        </div>
+
+  
+                      
+  
+                      <hr class="my-4">
+  
+                      <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">Total(Incl. taxes)</p>
+                        <p class="mb-2"><%= totalPrice %> SAR</p>
+                      </div>
+  
+                      <input type="hidden" name="totalPrice" value="<%= totalPrice %>">
+                      <button type="submit" class="btn btn-block btn-lg" style="background-color:#c4814a;">
+                        <div class="d-flex justify-content-between">
+                          <span><%= totalPrice %> SAR</span>
+                          <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                      </button>
+  
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+</form>
+<%- include('./partials/footer.ejs') %>
+
+  
+
+
+    </body>
+    </html>

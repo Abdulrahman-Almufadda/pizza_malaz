@@ -1,0 +1,28 @@
+<%- include('./partials/adminHeader.ejs') %> 
+<% if(Products.length > 0){%>
+    <% let num = 1 %> 
+    <table class="table table-striped">
+       <thead>
+        <th>#</th>
+        <th>Product Name</th>
+        <th>image path</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>actions</th>
+       </thead>
+       <%Products.forEach(product => { %>
+        <tr>
+        <td><%= num++ %></td>
+        <td><%= product.productName %></td>
+        <td><%= product.productImage %></td>
+        <td><%= product.productDescription %></td>
+        <td><%= product.productPrice %> SAR</td>
+        <td>
+          <a href="/deleteProduct/<%= product._id%> " class="text-danger"><i class="fas fa-trash-alt" style="color: rgba(199, 38, 38, 0.562); margin-right: 5px;"></i></a>
+          <a href="/editProduct/<%= product._id%>" class="text-primary" ><i class="fas fa-edit" style="color: rgba(102, 125, 255, 0.884); margin-right: 5px;"></i></i></a>
+        </td>
+       </tr>
+        <%})}%>
+     
+      </table>
+<%- include('./partials/adminFooter.ejs') %> 

@@ -1,0 +1,28 @@
+<%- include('./partials/adminHeader.ejs') %> 
+<div class="row justify-content-center">
+  <% if(Orders.length > 0){%>
+    <% Orders.forEach(order => {%>
+        <div class="card text-center row-cols-auto p-0 m-5" style="width: 18rem;">
+            <div class="card-header">
+                 <h5 class="card-title">ON: <%= order.receiptNumber %></h5>
+            </div>
+            <div class="card-body ">
+              <h6 class="card-text">phone: <%= order.phone %> </h6>
+              <h6 class="card-text">location: <%= order.location %></h6>
+              <h6 class="card-text">total price: <%= order.totalPrice %> </h6>
+              <a href="/orderInfo/<%=order._id%>" class="btn btn-primary">show more</a>
+            </div>
+          </div>
+   <%  }) %> 
+   <% }else{ %>
+    <h1>no orders yet</h1>
+    <% } %>
+</div>
+
+<%- include('./partials/adminFooter.ejs'); %> 
+
+
+<!-- 
+    resrource for dashboard:
+    https://github.com/mustafaerden/responsive-bootstrap5-admin-dashboard
+ -->

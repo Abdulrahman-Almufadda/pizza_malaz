@@ -1,0 +1,50 @@
+<%- include('./partials/adminHeader.ejs') %> 
+<% if(Products.length > 0){%>
+    <% let num = 1 %> 
+    <table class="table table-striped">
+       <thead>
+        <th>#</th>
+        <th>Product Name</th>
+        <th>image path</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>actions</th>
+       </thead>
+       <%Products.forEach(product => { %>
+        <%  if(product._id == PID){%>
+            <tr>
+                <form action="/editProduct/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data" > 
+                <td><%= num++ %></td>
+                <td><input type="text" name="productName" value="<%= product.productName %>"></td>
+                <td><input type="file"name="productImage" value="<%= product.productImage %>"></td>
+                <td> <textarea class="form-control w-50" name="productDescription" ><%= product.productDescription %></textarea></td>
+                <td> <input type="number" name="productPrice" value="<%= product.productPrice %>"></td>
+                <td>
+                  <a href="/Products" class="text-primary"><i class="far fa-times-circle"></i></a>
+                  <button class="btn btn-link" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                    </svg>
+                </button>
+                </td>
+                </form>
+               
+               </tr>
+
+            <% }else{ %>
+                <tr>
+                    <td><%= num++ %></td>
+                    <td><%= product.productName %></td>
+                    <td><%= product.productImage %></td>
+                    <td><%= product.productDescription %></td>
+                    <td><%= product.productPrice %> SAR</td>
+                    <td>
+                      <a href="/deleteProduct/<%= product._id%> " class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                      <a href="/editProduct/<%= product._id%>" class="text-primary" ><i class="fas fa-edit"></i></i></a>
+                    </td>
+                   </tr>
+                <% } %>
+        <%})}%>
+     
+      </table>
+<%- include('./partials/adminFooter.ejs') %> 

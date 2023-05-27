@@ -1,0 +1,67 @@
+<%- include('./partials/adminHeader.ejs') %> 
+<div class="container">
+
+<h1>Costimer Info</h1>
+<br>
+    <table class="table table-borderless">
+        <tbody style="font-size: 20px ;">
+          <tr>
+            <td>customer name :</td>
+            <td><span class="text-success"> <%= User.name %> </span></td>
+          </tr>
+          <tr>
+            <td>customer phone:</td>
+            <td><span class="text-success"> 0<%=Order.phone %> </span></td>
+          </tr>
+          <tr>
+            <td>customer location:</td>
+            <td><span class="text-success"> <%= Order.location %> </span> </td>
+          </tr>
+          <tr>
+            <td>order number:</td>
+            <td><span class="text-success"> <%= Order.receiptNumber %> </span></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+
+    <br>
+    <hr>
+
+
+
+
+
+
+    <h1>Order Info</h1>
+    <br>
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+
+         <% for( let i = 0; i < Order.quantity.length; i++ ) { %>
+            <tr>
+                <td><%= Order.productName[i]%></td>
+                <td><%= Order.quantity[i] %></td>
+            </tr>  
+         <% } %>
+          
+          <tr style="font-size: large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            <td >total price:</td>
+            <td><%= Order.totalPrice %> SAR</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+</div>
+<%- include('./partials/adminFooter.ejs'); %> 

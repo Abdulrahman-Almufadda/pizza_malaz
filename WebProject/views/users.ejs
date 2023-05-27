@@ -1,0 +1,45 @@
+<%- include('./partials/adminHeader.ejs') %> 
+<% if(Users.length > 0 && role == "admin"){%>
+<% let num = 1 %> 
+<table class="table table-striped">
+   <thead>
+    <th>#</th>
+    <th>name</th>
+    <th>email</th>
+    <th>role</th>
+   </thead>
+   <%Users.forEach(this_user => { %>
+    <tr>
+    <td><%= num++ %></td>
+    <td><%= this_user.name %></td>
+    <td><%= this_user.email %></td>
+    <td><%= this_user.role %></td>
+   </tr>
+    <%})%>
+ 
+  </table>
+  <%}else{%>
+    <% let num = 1 %> 
+<table class="table table-striped">
+   <thead>
+    <th>#</th>
+    <th>name</th>
+    <th>email</th>
+    <th>role</th>
+    <th>action</th>
+   </thead>
+   <%Users.forEach(this_user => { %>
+    <tr>
+    <td><%= num++ %></td>
+    <td><%= this_user.name %></td>
+    <td><%= this_user.email %></td>
+    <td><%= this_user.role %></td>
+    <td>
+        <a href="/users/<%= this_user._id%> " class="text-danger"><i class="fas fa-trash-alt" style="color: rgba(199, 38, 38, 0.562); margin-right: 5px;"></i></a>
+        <a href="/role/<%= this_user._id%>" class="text-primary" ><i class="fas fa-edit" style="color: rgba(102, 125, 255, 0.884); margin-right: 5px;"></i></i></a>
+    </td>
+   </tr>
+    <%})}%>
+</table>
+
+<%- include('./partials/adminFooter.ejs') %> 

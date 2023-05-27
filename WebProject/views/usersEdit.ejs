@@ -1,0 +1,73 @@
+<%- include('./partials/adminHeader.ejs') %> 
+<% if(Users.length > 0 && role == "admin"){%>
+<% let num = 1 %> 
+<table class="table table-striped">
+   <thead>
+    <th>#</th>
+    <th>name</th>
+    <th>email</th>
+    <th>role</th>
+   </thead>
+   <%Users.forEach(this_user => { %>
+    <tr>
+    <td><%= num++ %></td>
+    <td><%= this_user.name %></td>
+    <td><%= this_user.email %></td>
+    <td><%= this_user.role %></td>
+   </tr>
+    <%})%>
+ 
+  </table>
+  <%}else{%>
+    <% let num = 1 %> 
+<table class="table table-striped">
+   <thead>
+    <th>#</th>
+    <th>name</th>
+    <th>email</th>
+    <th>role</th>
+    <th>action</th>
+   </thead>
+   <%Users.forEach(this_user => { %> 
+    <% if(this_user._id == userId){ %> 
+     <form action="/role/<%= this_user._id%>?_method=PUT" method="POST"> 
+    <tr>
+    <td><%= num++ %></td>
+    <td><%= this_user.name %></td>
+    <td><%= this_user.email %></td>
+    <td>
+        <select name="role" id="">
+            <option selected><%= this_user.role %></option>
+            <% if (this_user.role == "admin" ){%> 
+            <option value="user">user</option>  
+            <% }else if (this_user.role == "user"){ %>  
+            <option value="admin">admin</option>
+            <% } %> 
+        </select>
+    </td>
+    <td>
+        <a href="/users" class="text-primary" ><i class="far fa-times-circle"></i></a>
+        <button class="btn btn-link" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+            </svg>
+        </button>
+    </td>
+    </tr>
+    </form>
+    <% }else{ %>       
+             <tr>
+             <td><%= num++ %></td>
+             <td><%= this_user.name %></td>
+             <td><%= this_user.email %></td>
+             <td><%= this_user.role %></td>
+             <td>
+                 <a href="/users/<%= this_user._id%> " class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                 <a href="/role/<%= this_user._id%>" class="text-primary" ><i class="fas fa-edit"></i></i></a>
+             </td>
+            </tr>
+             <%}})}%>  
+
+</table>
+
+<%- include('./partials/adminFooter.ejs') %> 
